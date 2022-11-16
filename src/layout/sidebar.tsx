@@ -31,7 +31,7 @@ export default function Sidebar() {
 
                 <div className="flex justify-center flex-col gap-4 mt-6 w-full">
                     {routers.map((router, index) => (
-                        <div className="p-6 flex items-center rounded-r-xl w-30 h-8 hover:bg-[#20345a] cursor-pointer"
+                        <div className="p-6 flex items-center lg:rounded-r-xl w-30 h-8 hover:bg-[#20345a] cursor-pointer"
                              key={index}>
                             <div className="text-center">
                                 {router.icon}
