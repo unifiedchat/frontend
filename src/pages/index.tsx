@@ -22,10 +22,6 @@ export default function Home() {
             </Head>
 
             <main className="flex flex-col justify-center items-center h-[100vh] w-full">
-                <Typography variant="h1" component="h2" className="mb-4">
-                    its Cool
-                </Typography>
-
                 <Button onClick={handleLogin} className="font-bold text-lg hover:text-purple-500">Create Connection for youtube channel.</Button>
             </main>
         </div>
