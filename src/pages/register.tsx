@@ -1,5 +1,5 @@
 import Authentication from "../components/Auth";
 
 export default function Login() {
-  return <Authentication register={false} />;
+    return <Authentication register={true} />;
 }
