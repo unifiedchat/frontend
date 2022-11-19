@@ -1,10 +1,13 @@
 import type {AppProps} from 'next/app'
 
 // Layout Components
-import Sidebar from "../layout/sidebar";
+import Sidebar from "../@core/layout/sidebar";
 
 // Component Imports
 import NotSupported from "./not-supported";
+
+// ** Third Party Import
+import { Toaster } from 'react-hot-toast'
 
 // Font Awesome Styles Import
 import '@fontsource/roboto/300.css';
@@ -22,6 +25,7 @@ export default function App({Component, pageProps}: AppProps) {
                 <Sidebar/>
 
                 <Component {...pageProps} />
+                <Toaster/>
             </div>
 
             <div className="lg:hidden flex w-full h-[100vh]">

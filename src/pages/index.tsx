@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 // Component Imports
-import Button from "../components/Button";
+import Button from "../@core/components/Button";
 
 // MUI Imports
 import {Typography} from "@mui/material";
