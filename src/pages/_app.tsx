@@ -2,7 +2,7 @@ import { NextComponentType } from "next";
 import { AppProps } from "next/app";
 
 // Layout Components
-import SideBar from "../@core/layout/SideBar";
+import SideBar from "@core/layout/SideBar";
 
 // Component Imports
 import NotSupported from "./not-supported";
