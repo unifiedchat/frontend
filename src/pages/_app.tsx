@@ -2,7 +2,7 @@ import {NextComponentType, NextPage, NextPageContext} from "next";
 import {AppProps} from "next/app";
 
 // Layout Components
-import Sidebar from "../@core/layout/sidebar";
+import SideBar from "../@core/layout/SideBar";
 
 // Component Imports
 import NotSupported from "./not-supported";
@@ -27,7 +27,7 @@ type ExtendedAppProps = AppProps & {
 }
 
 export default function App({Component, pageProps}: ExtendedAppProps) {
-    const getLayout = Component.getLayout || ((page) => <Sidebar>{page}</Sidebar>);
+    const getLayout = Component.getLayout || ((page) => <SideBar>{page}</SideBar>);
 
     return (
         <div>

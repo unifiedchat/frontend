@@ -1,9 +1,4 @@
 import Head from 'next/head'
-
-// Component Imports
-import Button from "../@core/components/Button";
-
-// MUI Imports
 import {Typography} from "@mui/material";
 
 export default function Home() {
@@ -21,8 +16,10 @@ export default function Home() {
                 <link rel="icon" href="/public/favicon.ico"/>
             </Head>
 
-            <main className="flex flex-col justify-center items-center h-[100vh] w-full">
-                <Button onClick={handleLogin} className="font-bold text-lg hover:text-purple-500">Create Connection for youtube channel.</Button>
+            <main className="flex flex-col justify-center items-center h-[100vh] w-full text-black">
+                <Typography variant="h3">
+                    Create Connection for live chat of youtube
+                </Typography>
             </main>
         </div>
     )

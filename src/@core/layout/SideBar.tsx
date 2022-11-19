@@ -7,7 +7,7 @@ import {ReactNode} from "react";
 
 //https://mui.com/material-ui/material-icons
 
-export default function Sidebar({children}: { children: ReactNode }) {
+export default function SideBar({children}: { children: ReactNode }) {
     const router = useRouter();
     const clsName = "text-4xl text-white hover:rotate-[360deg] transition-all duration-300  ease-in-out";
     const routers = [
