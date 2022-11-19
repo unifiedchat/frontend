@@ -3,12 +3,14 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import {Typography} from "@mui/material";
 import {Twitter} from "@mui/icons-material";
 import {useRouter} from "next/router";
-import {ReactNode} from "react";
+import {ReactNode, useEffect, useState} from "react";
+import TokenService from '../../services/TokenService';
 
 //https://mui.com/material-ui/material-icons
 
 export default function SideBar({children}: { children: ReactNode }) {
     const router = useRouter();
+    const [token, setToken] = useState<string>("");
     const clsName = "text-4xl text-white hover:rotate-[360deg] transition-all duration-300  ease-in-out";
     const routers = [
         {
@@ -26,6 +28,12 @@ export default function SideBar({children}: { children: ReactNode }) {
     function redirectToPage(page: string) {
         router.push(page)
     }
+
+    useEffect(() => {
+        const accessToken = TokenService.getToken();
+
+        if (accessToken) setToken(accessToken);
+    }, [])
 
     return (
         <div>
@@ -53,12 +61,23 @@ export default function SideBar({children}: { children: ReactNode }) {
                         ))}
                     </div>
                 </div>
-                <div
-                    className="flex items-center justify-center border-t border-gray-700 h-14 cursor-pointer hover:bg-[#20345a]"
-                    onClick={() => redirectToPage("login")}>
-                    <PeopleAltIcon className="text-white"/>
-                    <span className="text-white ml-2 lg:flex hidden">Login</span>
-                </div>
+                {!token && (
+                    <div
+                        className="flex items-center justify-center border-t border-gray-700 h-14 cursor-pointer hover:bg-[#20345a]"
+                        onClick={() => redirectToPage("login")}>
+                        <PeopleAltIcon className="text-white"/>
+                        <span className="text-white ml-2 lg:flex hidden">Login</span>
+                    </div>
+                )}
+
+                {token && (
+                    <div
+                        className="flex items-center justify-center border-t border-gray-700 h-14 cursor-pointer hover:bg-[#20345a]"
+                        onClick={() => redirectToPage("profile")}>
+                        <img src="https://avatars.githubusercontent.com/u/14241866?v=4" width={40} height={40} className="rounded-full" />
+                        <span className="text-white ml-2 lg:flex hidden">Risy</span>
+                    </div>
+                )}
             </div>
 
             <div className="ml-20">
