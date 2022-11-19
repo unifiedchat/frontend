@@ -1,9 +1,10 @@
-import YouTubeIcon from "@mui/icons-material/YouTube";
+import { Twitter } from "@mui/icons-material";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import {Typography} from "@mui/material";
-import {Twitter} from "@mui/icons-material";
-import {useRouter} from "next/router";
-import {ReactNode, useEffect, useState} from "react";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import { Typography } from "@mui/material";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { ReactNode, useEffect, useState } from "react";
 import TokenService from '../../services/TokenService';
 
 //https://mui.com/material-ui/material-icons
@@ -41,9 +42,9 @@ export default function SideBar({children}: { children: ReactNode }) {
                 className="flex justify-between lg:w-60 w-20 h-full duration-300 fixed left-0 flex-col bg-[#131c2e]">
                 <div className="flex flex-col justify-between items-center">
                     <div className="flex justify-center items-center border-b border-gray-700 h-14 w-full">
-                        <Typography variant="h5" className="text-white ml-2 lg:flex hidden">UnifiedChat</Typography>
-                        <img src="https://avatars.githubusercontent.com/u/118222787?s=200&v=4"
-                             className="lg:hidden flex w-10 h-10 rounded-full"/>
+                        <Image src="https://avatars.githubusercontent.com/u/118222787?s=200&v=4" alt="asd"
+                             className="flex w-10 h-10 rounded-full" width={200} height={200}/>
+                        <Typography variant="h5" className="text-white ml-2">UnifiedChat</Typography>
                     </div>
 
                     <div className="flex justify-center flex-col gap-4 mt-6 w-full">
@@ -74,7 +75,7 @@ export default function SideBar({children}: { children: ReactNode }) {
                     <div
                         className="flex items-center justify-center border-t border-gray-700 h-14 cursor-pointer hover:bg-[#20345a]"
                         onClick={() => redirectToPage("profile")}>
-                        <img src="https://avatars.githubusercontent.com/u/14241866?v=4" width={40} height={40} className="rounded-full" />
+                        <Image src="https://avatars.githubusercontent.com/u/14241866?v=4" alt="Avatar" width={40} height={40} className="rounded-full" />
                         <span className="text-white ml-2 lg:flex hidden">Risy</span>
                     </div>
                 )}
