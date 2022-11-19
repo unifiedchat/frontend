@@ -1,11 +1,11 @@
 import HomeIcon from "@mui/icons-material/Home";
-import {Card, CardContent, Grid, Typography} from "@mui/material";
-import TextField from "@mui/material/TextField";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
-import {useRouter} from "next/router";
-import {useState} from "react";
-import {createUser, loginUser} from "../../services/ApiService";
+import TextField from "@mui/material/TextField";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { createUser, loginUser } from "../../services/ApiService";
 import catchMessage from "../utils/catchMessage";
 
 interface AuthProps {
@@ -31,7 +31,7 @@ export default function Auth({register}: AuthProps) {
             password,
         };
 
-        if (e === "register") {
+        if (register) {
             data["email"] = email;
 
             createUser(data).then(() => {
@@ -40,7 +40,8 @@ export default function Auth({register}: AuthProps) {
                     position: "bottom-right",
                 })
             }).catch(catchMessage);
-        } else if (e === "login") {
+        } else  {
+            console.log(data);
             loginUser(data).then(() => {
                 toast.success("Login successfully", {
                     duration: 3000,
@@ -61,16 +62,16 @@ export default function Auth({register}: AuthProps) {
                         <CardContent>
                             <Typography variant="h5">{register ? "Register" : "Login"}</Typography>
                             <Grid container spacing={2} marginTop={2}>
-                                {register && (
+                                
                                     <Grid item xs={12}>
                                         <TextField fullWidth label="Username" value={username}
                                                    onChange={(e) => setUsername(e.target.value)}/>
                                     </Grid>
-                                )}
-                                <Grid item xs={12}>
+                                
+                                {register && (<Grid item xs={12}>
                                     <TextField fullWidth label="Email" value={email}
                                                onChange={(e) => setEmail(e.target.value)}/>
-                                </Grid>
+                                </Grid>)}
 
                                 <Grid item xs={12}>
                                     <TextField fullWidth label="Password" value={password}
@@ -88,7 +89,7 @@ export default function Auth({register}: AuthProps) {
                             {!register && (
                                 <div className="flex justify-end w-full mt-2">
                                     <span className="!text-right hover:text-blue-800 cursor-pointer"
-                                          onClick={() => redirectToPage("register")}>Don't have an account?</span>
+                                          onClick={() => redirectToPage("register")}>Don&apos;t have an account?</span>
                                 </div>
                             )}
 
