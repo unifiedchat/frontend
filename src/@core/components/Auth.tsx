@@ -51,7 +51,7 @@ export default function Auth({register}: AuthProps) {
     }
 
     return (
-        <div className="text-center text-white ml-20 h-[100vh] flex justify-center items-center">
+        <div className="text-center text-white h-[100vh] flex justify-center items-center">
             <div className={"w-[460px] flex-col bg-gray-900 flex justify-between items-center rounded-xl " + h}>
                 <div className="bg-[#29395f] rounded-xl w-full h-[160px] flex justify-center items-center">
                     <HomeIcon fontSize="large"/>

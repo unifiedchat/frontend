@@ -1,4 +1,5 @@
-import type {AppProps} from 'next/app'
+import {NextComponentType, NextPage, NextPageContext} from "next";
+import {AppProps} from "next/app";
 
 // Layout Components
 import Sidebar from "../@core/layout/sidebar";
@@ -18,13 +19,20 @@ import '@fontsource/roboto/700.css';
 // Global Styles
 import '../styles/globals.css'
 
-export default function App({Component, pageProps}: AppProps) {
+type ExtendedAppProps = AppProps & {
+    Component: NextComponentType & {
+        getLayout?: (page: any) => JSX.Element
+    };
+    pageProps: any;
+}
+
+export default function App({Component, pageProps}: ExtendedAppProps) {
+    const getLayout = Component.getLayout || ((page) => <Sidebar>{page}</Sidebar>);
+
     return (
         <div>
             <div className="lg:block hidden">
-                <Sidebar/>
-
-                <Component {...pageProps} />
+                {getLayout(<Component {...pageProps} />)}
                 <Toaster/>
             </div>
 
