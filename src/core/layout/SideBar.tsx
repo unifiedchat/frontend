@@ -67,7 +67,7 @@ export default function SideBar({children}: { children: ReactNode }) {
                             width={200}
                             height={200}
                         />
-                        <Typography variant="h5" className="text-white ml-4">
+                        <Typography variant="h5" className="text-white !ml-4">
                             UnifiedChat
                         </Typography>
                     </div>
