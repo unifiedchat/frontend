@@ -1,38 +1,49 @@
-import {HomeMax, HomeMini, Settings, Twitter} from "@mui/icons-material";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import YouTubeIcon from "@mui/icons-material/YouTube";
 import {Typography} from "@mui/material";
 import Image from "next/image";
-import HomeIcon from '@mui/icons-material/Home';
 import {useRouter} from "next/router";
 import {ReactNode, useEffect, useState} from "react";
-import TokenService from "../../services/TokenService";
-import Button from "@mui/material/Button";
+import TokenService from "@services/TokenService";
 
-//https://mui.com/material-ui/material-icons
+// ** Icons
+import HomeIcon from 'public/assets/icons/home.svg';
+import SettingsIcon from 'public/assets/icons/settings.svg';
+import AppIcon from 'public/assets/icons/app.svg';
+import SignupIcon from 'public/assets/icons/signup.svg';
+import AppStoreIcon from 'public/assets/icons/app-store.svg';
+import ChatIcon from 'public/assets/icons/chat.svg';
+import UserIcon from 'public/assets/icons/user.svg';
+
+const routers = [
+    {
+        name: "Home",
+        icon: HomeIcon,
+        path: "/",
+    },
+    {
+        name: "Platforms",
+        icon: AppIcon,
+        path: "/platforms",
+    },
+    {
+        name: "Comments",
+        icon: ChatIcon,
+        path: "/comments",
+    },
+    {
+        name: "Mobile App",
+        icon: AppStoreIcon,
+        path: "/mobile-app",
+    },
+    {
+        name: "Settings",
+        icon: SettingsIcon,
+        path: "/settings",
+    },
+];
 
 export default function SideBar({children}: { children: ReactNode }) {
     const router = useRouter();
     const [token, setToken] = useState<string>("");
-    const clsName =
-        "text-4xl text-white hover:rotate-[360deg] transition-all duration-300  ease-in-out";
-    const routers = [
-        {
-            name: "Home",
-            icon: <HomeIcon className={clsName}/>,
-            path: "/",
-        },
-        {
-            name: "Youtube",
-            icon: <YouTubeIcon className={clsName}/>,
-            href: "/youtube",
-        },
-        {
-            name: "Twitch",
-            icon: <Twitter className={clsName}/>,
-            href: "/twitch",
-        },
-    ];
 
     function redirectToPage(page: string) {
         router.push(page);
@@ -46,7 +57,7 @@ export default function SideBar({children}: { children: ReactNode }) {
 
     return (
         <div>
-            <div className="flex justify-between w-72 h-full duration-300 fixed left-0 flex-col bg-[#131c2e]">
+            <div className="flex justify-between w-72 h-full duration-300 fixed left-0 flex-col bg-navbar">
                 <div className="flex flex-col justify-between items-center">
                     <div className="flex justify-center items-center h-24 w-full cursor-pointer">
                         <Image
@@ -61,53 +72,54 @@ export default function SideBar({children}: { children: ReactNode }) {
                         </Typography>
                     </div>
 
-                    <div className="flex justify-center flex-col gap-4 mt-6 w-full">
+                    <div className="flex justify-center flex-col gap-4 mt-6 w-full p-4">
                         {routers.map((r, index) => (
                             <div
-                                className={`p-6 flex items-center w-30 h-8 hover:bg-[#20345a] cursor-pointer ` + (r.path === router.pathname ? "bg-[#20345a]" : "")}
+                                className={`flex items-center rounded-md w-30 !h-14 px-2 h-8 cursor-pointer ` + (r.path === router.pathname ? "bg-navbar-button" : "")}
                                 key={index}
+                                onClick={() => redirectToPage(r.path)}
                             >
-                                <div className="text-center">{r.icon}</div>
+                                <div
+                                    className="text-4xl text-white hover:rotate-[360deg] transition-all duration-300 ease-in-out">
+                                    <Image src={r.icon} alt={r.name}></Image>
+                                </div>
                                 <div>
-                                    <h1 className="text-white ml-2 hover:none lg:flex hidden">
-                                        {r.name}
-                                    </h1>
+                                    <Typography className="text-white font-normal text-lg">{r.name}</Typography>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
-                {token && (
-                    <div
-                        className="flex w-full items-center justify-center h-14 cursor-pointer"
-                        onClick={() => redirectToPage("login")}
-                    >
-                        <Button variant="contained" color="primary" fullWidth={true}>
-                            Login
-                        </Button>
-                    </div>
-                )}
-
                 {!token && (
                     <div
                         className="flex items-center cursor-pointer p-4"
-                        onClick={() => redirectToPage("profile")}
-                    >
-                        <div className="flex justify-between w-full items-center mx-2">
-                            <div className="flex items-center w-full">
-                                <Image
-                                    src="https://avatars.githubusercontent.com/u/14241866?v=4"
-                                    alt="Avatar"
-                                    width={40}
-                                    height={40}
-                                    className="rounded-full"
-                                />
-                                <Typography variant="h6" className="text-white !font-normal ml-2">
-                                    Risy
-                                </Typography>
-                            </div>
+                        onClick={() => redirectToPage("login")}>
 
-                            <Settings className={clsName + " !text-3xl"}/>
+                        <div className="flex items-center p-1 px-2 rounded-lg bg-[#667A8A] w-full">
+                            <Image src={SignupIcon} alt={"login-icon"}/>
+                            <span className="text-white ml-2 text-lg">Login</span>
+                        </div>
+                    </div>
+                )}
+
+                {token && (
+                    <div
+                        className="flex items-center cursor-pointer p-4">
+
+                        <div className="flex items-center justify-between p-1 px-2 rounded-lg bg-navbar-button w-full">
+                            <div className="flex justify-between items-center w-full">
+                                <div className="flex items-center w-full" onClick={() => redirectToPage("profile")}>
+                                    <Image
+                                        src={UserIcon}
+                                        alt="Avatar"
+                                    />
+                                    <Typography className="text-lg text-white !font-normal ml-2">
+                                        Risy
+                                    </Typography>
+                                </div>
+
+                                <Image src={SignupIcon} alt={"logout-icon"} onClick={() => redirectToPage("logout")}/>
+                            </div>
                         </div>
                     </div>
                 )}
