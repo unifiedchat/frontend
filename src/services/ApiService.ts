@@ -11,3 +11,7 @@ export const createUser = async (data: any) => {
 export const loginUser = async (data: any) => {
 	return await Http.Post("/auth/login", data);
 };
+
+export const getMe = async () => {
+	return await Http.Get("/user/@me");
+}

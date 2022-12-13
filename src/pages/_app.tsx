@@ -32,14 +32,15 @@ export default function App({ Component, pageProps }: ExtendedAppProps) {
 
 	return (
 		<div>
-			<div className="lg:block hidden">
+			<div className="">
 				{getLayout(<Component {...pageProps} />)}
+
 				<Toaster />
 			</div>
 
-			<div className="lg:hidden flex w-full h-[100vh]">
-				<NotSupported />
-			</div>
+			{/*<div className="lg:hidden flex w-full h-[100vh]">*/}
+			{/*	<NotSupported />*/}
+			{/*</div>*/}
 		</div>
 	);
 }

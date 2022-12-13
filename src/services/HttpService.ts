@@ -1,11 +1,12 @@
 import axios from "axios";
+import TokenService from "@services/TokenService";
 
 let Http = axios.create({
 	baseURL: process.env.NEXT_PUBLIC_API_URL,
 	headers: {
 		"Content-Type": "application/json",
 		Authorization: `Bearer ${
-			typeof window !== "undefined" && localStorage.token
+			typeof window !== "undefined" && TokenService.getToken()
 		}`,
 	},
 });

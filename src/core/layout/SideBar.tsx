@@ -49,6 +49,11 @@ export default function SideBar({children}: { children: ReactNode }) {
         router.push(page);
     }
 
+    function logoutAccount() {
+        TokenService.clearToken();
+        router.push("/");
+    }
+
     useEffect(() => {
         const accessToken = TokenService.getToken();
 
@@ -118,14 +123,14 @@ export default function SideBar({children}: { children: ReactNode }) {
                                     </Typography>
                                 </div>
 
-                                <Image src={SignupIcon} alt={"logout-icon"} onClick={() => redirectToPage("logout")}/>
+                                <Image src={SignupIcon} alt={"logout-icon"} onClick={() => logoutAccount()}/>
                             </div>
                         </div>
                     </div>
                 )}
             </div>
 
-            <div className="ml-20">{children}</div>
+            <div className="!ml-72">{children}</div>
         </div>
     );
 }

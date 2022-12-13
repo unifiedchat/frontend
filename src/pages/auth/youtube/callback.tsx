@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { createConnectionForYoutube } from "../../../services/ApiService";
+import catchMessage from "@core/utils/catchMessage";
+import toast from "react-hot-toast";
 
 export default function GoogleCallback() {
 	const router = useRouter();
@@ -10,11 +12,12 @@ export default function GoogleCallback() {
 		if (code) {
 			createConnectionForYoutube(code as string)
 				.then(() => {
-					alert("Bağlantı başarılı.");
+					toast.success("Successfully connected to Youtube", {
+						position: "bottom-center",
+						duration: 3000,
+					});
 				})
-				.catch(() => {
-					alert("Bağlantı başarısız.");
-				});
+				.catch(catchMessage);
 		}
 	}, [code]);
 
