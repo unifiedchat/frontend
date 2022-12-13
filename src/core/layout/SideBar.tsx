@@ -25,9 +25,9 @@ const routers = [
         path: "/platforms",
     },
     {
-        name: "Comments",
+        name: "Live Chat",
         icon: ChatIcon,
-        path: "/comments",
+        path: "/live-chat",
     },
     {
         name: "Mobile App",
