@@ -12,18 +12,18 @@ export default function PasswordChangeTab() {
             <TextField
                 placeholder={"Current Password"}
                 type={"password"}
-                className="w-full mt-4"
+                className="w-full !mt-4"
                 sx={{ input: { color: 'white' } }}
             ></TextField>
 
             <TextField
                 placeholder={"Current Password"}
                 type={"password"}
-                className="w-full mt-4 !text-white"
+                className="w-full !mt-4 !text-white"
                 sx={{ input: { color: 'white' } }}
             ></TextField>
 
-            <Button variant="contained" color="primary" className="bg-blue-600 mt-4">
+            <Button variant="contained" color="primary" className="bg-blue-600 !mt-4">
                 Change Password
             </Button>
         </div>

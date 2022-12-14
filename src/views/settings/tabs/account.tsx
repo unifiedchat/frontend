@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 
 export default function AccountTab() {
     return (
-        <div className="flex flex-col gap-y-2 h-full w-full">
+        <div className="flex flex-col !gap-y-2 h-full w-full">
             <div className="flex items-center">
                 <Image
                     src="https://avatars.dicebear.com/api/initials/eren-risy.svg"
@@ -15,7 +15,7 @@ export default function AccountTab() {
                     height={80}
                 ></Image>
 
-                <Typography variant="h6" className="text-white ml-2">
+                <Typography variant="h6" className="text-white !ml-2">
                     Eren Risy
                 </Typography>
             </div>
