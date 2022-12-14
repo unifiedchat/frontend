@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 
 export default function PasswordChangeTab() {
     return (
-        <div className="p-4">
+        <div>
             <Typography variant="h5" className="text-white">
                 Password and Authentication
             </Typography>
@@ -13,7 +13,7 @@ export default function PasswordChangeTab() {
                 placeholder={"Current Password"}
                 type={"password"}
                 className="w-full mt-4"
-                sx={{ input: { color: 'white', border: "1px solid white" } }}
+                sx={{ input: { color: 'white' } }}
             ></TextField>
 
             <TextField
