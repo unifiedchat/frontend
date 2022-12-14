@@ -5,6 +5,7 @@ module.exports = {
 		extend: {
 			colors: {
 				primary: "#29395f",
+				gray: "#808080",
 				navbar: {
 					DEFAULT: "#031C30",
 				},

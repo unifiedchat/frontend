@@ -15,15 +15,35 @@ export default function AccountTab() {
                     height={80}
                 ></Image>
 
-                <Typography variant="h6" className="text-white !ml-2">
-                    Eren Risy
-                </Typography>
+                <div>
+                    <Typography variant="h6" className="text-white !ml-2">
+                        Eren Risy
+                    </Typography>
+
+                    <span className="text-gray !ml-2">
+                        eren@siktir.et
+                    </span>
+                </div>
             </div>
 
-            <div className="flex items-end justify-end h-full w-full">
-                    <Button variant="outlined" color="error">
-                    Delete Account
-                </Button>
+            <div className="flex items-end h-full w-full">
+                <div className="flex flex-col !gap-y-2">
+                    <Typography variant="h5" className="text-white">
+                        Account Delete
+                    </Typography>
+
+                    <div>
+                        <p className="text-gray">
+                            Disabling your account will prevent you from logging in and using the service.
+                        </p>
+                    </div>
+
+                    <div>
+                        <Button variant="outlined" color="error">
+                            Delete Account
+                        </Button>
+                    </div>
+                </div>
             </div>
         </div>
     );
