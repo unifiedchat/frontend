@@ -1,10 +1,7 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFacebook, faInstagram, faTiktok, faTwitch, faTwitter, faYoutube} from "@fortawesome/free-brands-svg-icons";
-import {useState} from "react";
 
 function StepAccountSetup() {
-    const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([]);
-
     const platforms = [
         {
             name: "Facebook",
@@ -52,29 +49,11 @@ function StepAccountSetup() {
                 </div>
 
                 <div>
-                    {selectedPlatforms.length > 0 && (
-                        <button
-                            onClick={() => {
-                                setSelectedPlatforms([]);
-                            }}
-                            className="flex items-center gap-x-2 text-blue-400 hover:underline">
-                            <span>Clear</span>
-                        </button>
-                    )}
-
                     <div className="flex flex-wrap items-center gap-4 mt-4">
                         {platforms.map((platform, index) => (
                             <div
-                                onClick={() => {
-                                    if (selectedPlatforms.includes(platform.name)) {
-                                        setSelectedPlatforms(selectedPlatforms.filter((platformName) => platformName != platform.name));
-                                    } else {
-                                        setSelectedPlatforms([...selectedPlatforms, platform.name]);
-                                    }
-                                }}
                                 key={index}
-                                className={`flex items-center gap-x-2  w-30 h-12 px-4 py-2 border-2 border-[#2b2d33] cursor-pointer rounded-lg
-                        ${selectedPlatforms.includes(platform.name) && "bg-[#2b2d33] text-white"} `}>
+                                className={`flex items-center gap-x-2  w-30 h-12 px-4 py-2 border-2 border-[#2b2d33] cursor-pointer rounded-lg`}>
 
                                 <div
                                     className={`w-8 h-8 rounded-full flex justify-center items-center bg-${platform.color}-100`}>
