@@ -23,10 +23,12 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {AuthProvider} from "../context/AuthContext";
 import {getMe} from "@services/ApiService";
+import Authentication from "../@core/components/Auth";
 
 type ExtendedAppProps = AppProps & {
     Component: NextComponentType & {
         getLayout?: (page: any) => JSX.Element;
+        authGuard?: boolean;
     };
     pageProps: any;
 };
@@ -35,7 +37,9 @@ export default function App({Component, pageProps}: ExtendedAppProps) {
     const {isAuth, setIsAuth} = useAuth();
     const [loading, setLoading] = useState(true);
     const router = useRouter();
-    let getLayout = Component.getLayout || ((page: any) => <SideBar>{page}</SideBar>)
+
+    const authGuard = Component.authGuard || false;
+    const getLayout = Component.getLayout || ((page: any) => <SideBar>{page}</SideBar>)
 
     useEffect(() => {
         if (!router.isReady) return;
@@ -50,13 +54,22 @@ export default function App({Component, pageProps}: ExtendedAppProps) {
         });
     }, [])
 
+    function Guard({children}: { children: any }) {
+        if (authGuard && !isAuth) {
+            if (loading) return null;
+            return <Authentication register={false}/>;
+        }
+
+        return children;
+    }
+
     return (
         <AuthProvider>
-            <div>
+            <Guard>
                 {getLayout(<Component {...pageProps} />)}
 
                 <Toaster/>
-            </div>
+            </Guard>
 
             {/*<div className="lg:hidden flex w-full h-[100vh]">*/}
             {/*    <NotSupported/>*/}

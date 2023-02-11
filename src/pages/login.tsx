@@ -11,7 +11,9 @@ export default function Login() {
 	useEffect(() => {
 		getMe().then(() => {
 			router.push("/");
-		}).catch(() => {});
+		}).catch(() => {
+			return {};
+		});
 	}, []);
 
 	return <Authentication register={false} />;

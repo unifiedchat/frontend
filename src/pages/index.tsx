@@ -21,3 +21,5 @@ export default function Home() {
 		</div>
 	);
 }
+
+Home.authGuard = true;

@@ -5,3 +5,5 @@ export default function LiveChat() {
         </div>
     );
 }
+
+LiveChat.authGuard = true;

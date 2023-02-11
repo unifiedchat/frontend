@@ -3,7 +3,7 @@ import {getMe} from "@services/ApiService";
 import TokenService from "@services/TokenService";
 
 const defaultContext: AuthValuesType = {
-    isAuth: false,
+    isAuth: true,
     setIsAuth: () => {},
     user: null,
     loading: true,
@@ -23,6 +23,9 @@ const AuthProvider = (props: { children: any }) => {
             setIsAuth(true);
             getMe().then(res => {
                 setUser(res.data);
+                setLoading(false);
+            }).catch(error => {
+                console.error(error);
                 setLoading(false);
             });
         }

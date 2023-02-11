@@ -17,3 +17,5 @@ export default function Settings() {
         </Modal>
     )
 }
+
+Settings.authGuard = true;
