@@ -1,5 +1,5 @@
 import PlatformCard from '@views/platforms/card';
-import config from "@core/config";
+import config from "../../@core/config";
 
 export default function Platforms() {
     const platforms = [

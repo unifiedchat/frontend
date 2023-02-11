@@ -1,6 +1,13 @@
 export {};
 
 declare global {
+	type AuthValuesType = {
+		isAuth: boolean;
+		setIsAuth: (value: boolean) => void;
+		user: User | null;
+		loading: boolean;
+	}
+
 	interface User {
 		id: number;
 		access_token: string;

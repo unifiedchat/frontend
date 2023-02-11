@@ -108,6 +108,7 @@ export default function Auth({register}: AuthProps) {
                                 <Grid item xs={12}>
                                     <TextField
                                         fullWidth
+                                        type="password"
                                         label="Password"
                                         value={password}
                                         onChange={(e) =>

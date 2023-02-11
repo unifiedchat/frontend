@@ -20,11 +20,6 @@ const routers = [
         path: "/",
     },
     {
-        name: "Platforms",
-        icon: AppIcon,
-        path: "/platforms",
-    },
-    {
         name: "Live Chat",
         icon: ChatIcon,
         path: "/live-chat",
@@ -115,7 +110,10 @@ export default function SideBar({children}: { children: ReactNode }) {
                             <div className="flex justify-between items-center w-full">
                                 <div className="flex items-center w-full" onClick={() => redirectToPage("profile")}>
                                     <Image
-                                        src={UserIcon}
+                                        src="https://avatars.dicebear.com/api/big-ears-neutral/31.svg"
+                                        className="flex w-8 h-8 rounded-full"
+                                        width={30}
+                                        height={30}
                                         alt="Avatar"
                                     />
                                     <Typography className="text-lg text-white !font-normal ml-2">

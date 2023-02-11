@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { createConnectionForYoutube } from "../../../services/ApiService";
-import catchMessage from "@core/utils/catchMessage";
+import { createConnectionForYoutube } from "@services/ApiService";
+import catchMessage from "../../../@core/utils/catchMessage";
 import toast from "react-hot-toast";
 
 export default function GoogleCallback() {
