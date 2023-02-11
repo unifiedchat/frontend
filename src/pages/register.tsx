@@ -38,7 +38,7 @@ export default function Register() {
     }, []);
 
     return (
-        <div className="max-w-screen-lg px-20 pt-12 mx-auto">
+        <div className="container px-20 pt-12">
             <div className="flex gap-x-8 items-center">
                 {steps.map((step, index) => (
                     <div className="flex items-center" key={index}>
@@ -54,7 +54,7 @@ export default function Register() {
                 ))}
             </div>
 
-            <div className="flex flex-col w-full mt-12">
+            <div className="flex flex-col mt-12">
                 <h1 className="text-3xl font-bold">{steps[activeStep].title}</h1>
                 <p className="text-gray-500 mt-2">{steps[activeStep].description}</p>
 

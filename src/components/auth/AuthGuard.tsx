@@ -23,19 +23,15 @@ const AuthGuard = (props: AuthGuardProps) => {
                 return
             }
 
-            if (auth.user === null && !window.localStorage.getItem('userData')) {
-                if (router.asPath !== '/') {
-                    router.replace({
-                        pathname: '/login',
-                        query: { returnUrl: router.asPath }
-                    })
-                } else {
-                    router.replace('/login')
+            if (auth.user === null && !window.localStorage.getItem('accessToken')) {
+                if (router.pathname !== "login" && router.pathname !== '/register') {
+                    console.log("xxx")
+                    router.replace("/login")
                 }
             }
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [router.route]
+        [router.isReady]
     )
 
     if (auth.loading || auth.user === null) {

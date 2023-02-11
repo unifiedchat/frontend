@@ -23,6 +23,8 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {AuthProvider} from "../context/AuthContext";
 import {getMe} from "@services/ApiService";
+import TokenService from "@services/TokenService";
+import AuthGuard from "../components/auth/AuthGuard";
 
 type ExtendedAppProps = AppProps & {
     Component: NextComponentType & {
@@ -48,21 +50,18 @@ export default function App({Component, pageProps}: ExtendedAppProps) {
             setLoading(false);
         }).catch(error => {
             console.error(error);
-            if (router.pathname !== "/login" && router.asPath !== "/register") {
-                router.push("/login");
-            }
             setLoading(false);
         });
     }, [])
 
-    function Guard({children}: { children: any }) {
-        if (authGuard && !isAuth) {
-            if (loading) return null;
-            // router.push("/login");
-            return null;
+    function Guard({children}: { children?: any }) {
+        if (!authGuard) {
+            return <>{children}</>
+        } else if (!authGuard && !isAuth && router.asPath !== "/login" || router.pathname !== "/register") {
+            return <AuthGuard fallback={null}>{children}</AuthGuard>
         }
 
-        return children;
+        return <>{children}</>
     }
 
     return (
@@ -72,10 +71,6 @@ export default function App({Component, pageProps}: ExtendedAppProps) {
 
                 <Toaster/>
             </Guard>
-
-            {/*<div className="lg:hidden flex w-full h-[100vh]">*/}
-            {/*    <NotSupported/>*/}
-            {/*</div>*/}
         </AuthProvider>
     );
 }

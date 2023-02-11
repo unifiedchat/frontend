@@ -41,6 +41,7 @@ export default function Login() {
                     position: "bottom-right",
                 });
 
+                router.push("/");
                 const token = res.data.access_token;
                 if (token) {
                     TokenService.setToken(token);
