@@ -23,7 +23,6 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {AuthProvider} from "../context/AuthContext";
 import {getMe} from "@services/ApiService";
-import Authentication from "../@core/components/Auth";
 
 type ExtendedAppProps = AppProps & {
     Component: NextComponentType & {
@@ -49,7 +48,9 @@ export default function App({Component, pageProps}: ExtendedAppProps) {
             setLoading(false);
         }).catch(error => {
             console.error(error);
-            router.push("/login");
+            if (router.pathname !== "/login" && router.asPath !== "/register") {
+                router.push("/login");
+            }
             setLoading(false);
         });
     }, [])
@@ -57,7 +58,8 @@ export default function App({Component, pageProps}: ExtendedAppProps) {
     function Guard({children}: { children: any }) {
         if (authGuard && !isAuth) {
             if (loading) return null;
-            return <Authentication register={false}/>;
+            // router.push("/login");
+            return null;
         }
 
         return children;

@@ -6,8 +6,10 @@ export default function NotFound() {
 	const router = useRouter();
 
 	useEffect(() => {
+		if (!router.isReady) return;
+
 		router.push("/");
-	}, [router]);
+	}, [router.isReady]);
 
 	return (
 		<div className="flex justify-center items-center h-[100vh] text-3xl">
